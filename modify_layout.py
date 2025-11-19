@@ -21,14 +21,19 @@ def modify_layout(layout_file):
                         single_visual = config['singleVisual']
                         
                         # 1. Replace visualType
-                        if single_visual.get('visualType') in ['pivotTable', 'tableEx']:
+                        original_visual_type = single_visual.get('visualType')
+                        if original_visual_type in ['pivotTable', 'tableEx']:
                             single_visual['visualType'] = visual_to_replace_with
 
                         # 2. Modify projections
                         if 'projections' in single_visual:
                             projections = single_visual['projections']
                             if 'Values' in projections:
+                                values_copy = projections['Values']
                                 projections['ameasure'] = projections.pop('Values')
+                                # For tableEx, duplicate Values as rows
+                                if original_visual_type == 'tableEx':
+                                    projections['rows'] = values_copy
                             if 'Rows' in projections:
                                 projections['rows'] = projections.pop('Rows')
                             if 'Columns' in projections:
