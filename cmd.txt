@@ -1,0 +1,2 @@
+powershell.exe -NoProfile -Command "Set-Location -Path 'C:\Users\SrikkanthM\Downloads'; .\pbix.bat PowerBI_NativeVisuals.pbix
+ Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process
