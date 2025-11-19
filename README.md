@@ -27,11 +27,13 @@ This tool performs the following modifications on PBIX files:
 #### Convert a PBIX File
 
 **Basic conversion** (creates `<filename>_converted.pbix`):
+
 ```cmd
 pbix.bat "C:\path\to\your\file.pbix"
 ```
 
 **Specify output filename**:
+
 ```cmd
 pbix.bat "C:\path\to\input.pbix" "C:\path\to\output.pbix"
 ```
@@ -39,11 +41,13 @@ pbix.bat "C:\path\to\input.pbix" "C:\path\to\output.pbix"
 #### Extract PBIX Contents Only
 
 **Extract to default directory** (creates `<filename>_extracted`):
+
 ```cmd
 pbix.bat extract "C:\path\to\your\file.pbix"
 ```
 
 **Extract to specific directory**:
+
 ```cmd
 pbix.bat extract "C:\path\to\your\file.pbix" "C:\path\to\extract\folder"
 ```
@@ -53,17 +57,20 @@ pbix.bat extract "C:\path\to\your\file.pbix" "C:\path\to\extract\folder"
 If you prefer to run from PowerShell or need to bypass execution policies:
 
 #### Navigate to the directory and run
+
 ```powershell
 Set-Location -Path "C:\path\to\pbix\converter"
 .\pbix.bat "C:\path\to\your\file.pbix"
 ```
 
 #### One-liner with execution policy bypass
+
 ```powershell
 powershell.exe -NoProfile -ExecutionPolicy Bypass -Command "Set-Location -Path 'C:\path\to\pbix\converter'; .\pbix.bat 'C:\path\to\your\file.pbix'"
 ```
 
 #### With custom output file
+
 ```powershell
 .\pbix.bat "C:\path\to\input.pbix" "C:\path\to\output.pbix"
 ```
@@ -71,20 +78,24 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -Command "Set-Location -Path '
 ## Command Syntax
 
 ### Conversion Mode
-```
+
+```text
 pbix.bat <input.pbix> [output.pbix]
 ```
 
 **Parameters:**
+
 - `input.pbix` - **(Required)** Path to the input PBIX file
 - `output.pbix` - **(Optional)** Path for the output file. If not specified, creates `<input>_converted.pbix`
 
 ### Extract Mode
-```
+
+```text
 pbix.bat extract <input.pbix> [extract_dir]
 ```
 
 **Parameters:**
+
 - `extract` - **(Required)** Keyword to enable extraction mode
 - `input.pbix` - **(Required)** Path to the input PBIX file
 - `extract_dir` - **(Optional)** Destination directory. If not specified, creates `<input>_extracted`
@@ -92,36 +103,46 @@ pbix.bat extract <input.pbix> [extract_dir]
 ## Examples
 
 ### Example 1: Convert with Default Output Name
+
 ```cmd
 pbix.bat "PowerBI_NativeVisuals.pbix"
 ```
+
 **Result:** Creates `PowerBI_NativeVisuals_converted.pbix`
 
 ### Example 2: Convert with Custom Output Name
+
 ```cmd
 pbix.bat "PowerBI_NativeVisuals.pbix" "PowerBI_Modified.pbix"
 ```
+
 **Result:** Creates `PowerBI_Modified.pbix`
 
 ### Example 3: Extract PBIX Contents
+
 ```cmd
 pbix.bat extract "PowerBI_NativeVisuals.pbix"
 ```
+
 **Result:** Creates folder `PowerBI_NativeVisuals_extracted\` with contents
 
 ### Example 4: Extract to Specific Folder
+
 ```cmd
 pbix.bat extract "PowerBI_NativeVisuals.pbix" "MyExtractedFiles"
 ```
+
 **Result:** Creates folder `MyExtractedFiles\` with contents
 
 ### Example 5: Using from Different Directory
+
 ```cmd
 cd /d C:\Users\YourName\Downloads
 C:\path\to\pbix.bat "PowerBI_NativeVisuals.pbix"
 ```
 
 ### Example 6: PowerShell with Full Paths
+
 ```powershell
 Set-Location -Path "C:\Users\SrikkanthM\Downloads"
 .\pbix.bat "PowerBI_NativeVisuals.pbix"
@@ -130,7 +151,9 @@ Set-Location -Path "C:\Users\SrikkanthM\Downloads"
 ## Output
 
 ### Conversion Mode
+
 The script will display:
+
 - Input and output file paths
 - Extraction progress
 - SecurityBindings removal status
@@ -139,7 +162,9 @@ The script will display:
 - Summary of all changes made
 
 ### Extract Mode
+
 The script will:
+
 - Extract all contents from the PBIX file
 - Create a directory with the extracted files
 - Preserve the internal PBIX structure
@@ -147,6 +172,7 @@ The script will:
 ## Error Handling
 
 The script will exit with an error message if:
+
 - No input file is specified
 - Input file doesn't exist
 - Input file doesn't have a `.pbix` extension
@@ -157,20 +183,25 @@ The script will exit with an error message if:
 ## Troubleshooting
 
 ### "Python is not recognized"
+
 Ensure Python is installed and added to your system PATH.
 
 ### "Execution Policy" errors in PowerShell
+
 Run with `-ExecutionPolicy Bypass` flag:
+
 ```powershell
 powershell.exe -ExecutionPolicy Bypass -File pbix.bat "input.pbix"
 ```
 
 ### "Access Denied" errors
+
 - Ensure the PBIX file is not open in Power BI Desktop
 - Check you have write permissions to the output directory
 - Run Command Prompt as Administrator if necessary
 
 ### Conversion fails
+
 - Verify the PBIX file is not corrupted
 - Check that `modify_layout.py` and `create_pbix.py` exist in the same directory
 - Ensure you have enough disk space in the TEMP directory
@@ -185,7 +216,7 @@ powershell.exe -ExecutionPolicy Bypass -File pbix.bat "input.pbix"
 
 ## File Structure
 
-```
+```text
 PBIXConverter/
 ├── pbix.bat              # Main batch script
 ├── modify_layout.py      # Python script for layout modifications
@@ -203,6 +234,7 @@ PBIXConverter/
 ## Support
 
 If you encounter issues, check that:
+
 1. Python is properly installed and in PATH
 2. The helper Python scripts exist in the same directory
 3. You have write permissions to the output location
