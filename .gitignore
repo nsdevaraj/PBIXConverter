@@ -1,0 +1,41 @@
+# Inno Setup Compiler Output
+Output/
+*.exe
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+
+# Virtual Environment
+venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# PBIX Testing
+*_converted.pbix
+*_extracted/
+*_backup/
+*.backup
+
+# Temporary files
+*.tmp
+*.temp
+*.log
